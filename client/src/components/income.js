@@ -40,9 +40,9 @@ class income extends Component {
         const currencyComponents = newIncomeList.map((incomeList, i) => {
             return(
                 <div key={i}>
-                    <p>{incomeList.career}</p>
-                    <p>{incomeList.month}</p>
-                    <p>{incomeList.monthlyIncome}</p>
+                    <p>Place of work: {incomeList.career}</p>
+                    <p>Current month: {incomeList.month}</p>
+                    <p>Monthly income: {incomeList.monthlyIncome}</p>
                 </div>
             )
         })
@@ -81,7 +81,9 @@ class income extends Component {
                 value="Submit"
                 />
                 </form>
+                
             </div>
+            
         )
     }
 

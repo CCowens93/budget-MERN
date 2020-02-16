@@ -31,6 +31,10 @@ class expense extends Component {
         })
     }
 
+    
+    
+
+
     render(){
         console.log('From render()', this.state)
 
@@ -39,15 +43,18 @@ class expense extends Component {
         const expenseComponent = newExpenseList.map((expenseList, i) => {
             return(
                 <div key={i}>
-                    <p>{expenseList.expense}</p>
-                    <p>{expenseList.cost}</p>
+                    <p>Name of expense: {expenseList.expense}</p>
+                    <p>Cost of expense: {expenseList.cost}</p>
+                    
                 </div>
             )
         })
-
+        
+        
         return(
             <div>
                 {expenseComponent}
+               
 
                 <form onSubmit={this.handleSubmit}>
                     <input
@@ -71,6 +78,7 @@ class expense extends Component {
                     value="Submit"
                     />
                 </form>
+               
             </div>
         )
     }
