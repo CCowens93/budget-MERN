@@ -44,7 +44,7 @@ class expense extends Component {
             return(
                 <div key={i}>
                     <p>Name of expense: {expenseList.expense}</p>
-                    <p>Cost of expense: {expenseList.cost}</p>
+                    <p>Cost of expense: ${expenseList.cost}</p>
                     
                 </div>
             )

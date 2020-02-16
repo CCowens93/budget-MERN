@@ -7,13 +7,18 @@ import Expense from './components/expenses.js'
 function App() {
   return (
     <div className="App">
+      <h1>BUDGET APP</h1>
       <Router>
         <Switch>
+          
           <Route exact path="/" component={Income}/>
+          
         </Switch>
-
+ 
         <Switch>
+          
           <Route path="/" component={Expense}/>
+          
         </Switch>
       </Router>
     </div>

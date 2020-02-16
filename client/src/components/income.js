@@ -11,6 +11,10 @@ class income extends Component {
         incomeList:[]
     }
 
+    
+
+
+
     changeHandler = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -39,17 +43,19 @@ class income extends Component {
 
         const currencyComponents = newIncomeList.map((incomeList, i) => {
             return(
-                <div key={i}>
+                <div className="income" key={i}>
                     <p>Place of work: {incomeList.career}</p>
                     <p>Current month: {incomeList.month}</p>
-                    <p>Monthly income: {incomeList.monthlyIncome}</p>
+                    <p>Monthly income: ${incomeList.monthlyIncome}</p>
                 </div>
             )
         })
 
         return(
-            <div>
+            <div className="form">
                 {currencyComponents}
+
+          
 
                 <form onSubmit={this.handleSubmit}>
                 <input
