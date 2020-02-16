@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Income from './components/income.js'
+import Expense from './components/expenses.js'
 
 function App() {
   return (
@@ -11,9 +12,9 @@ function App() {
           <Route exact path="/" component={Income}/>
         </Switch>
 
-        {/* <Switch>
+        <Switch>
           <Route path="/" component={Expense}/>
-        </Switch> */}
+        </Switch>
       </Router>
     </div>
   );
