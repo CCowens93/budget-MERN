@@ -5,16 +5,18 @@ import axios from 'axios';
 class expense extends Component {
 
     state = {
-        expense:'',
-        cost:'',
-        expenseList:[]
+        expense: '',
+        cost: '',
+        resetOnSubmit: false,
+        expenseList: [],
     }
+
 
     changeHandler = (event) => {
         const name = event.target.name;
         const value = event.target.value;
 
-        const newState = {...this.state}
+        const newState = { ...this.state }
         newState[name] = value;
         this.setState(newState)
     }
@@ -24,61 +26,88 @@ class expense extends Component {
         axios.post('/api/expense', this.state)
     }
 
-    componentDidMount(){
+    componentDidMount() {
         axios.get('/api/expense')
-        .then((res) => {
-            this.setState({expenseList: res.data})
-        })
+            .then((res) => {
+                this.setState({ expenseList: res.data })
+            })
     }
 
-    
-    
+    deleteButton() {
+        axios.delete('/api/expense/:expenseId')
+            .then(() => {
+
+            })
+    }
+
+    oneExpense() {
+        axios.get('/api/expense/:expenseId')
+            .then((res) => {
+                this.setState({ expenseList: res.data })
+            })
+    }
+
+    resetHandler() {
+        axios.get('/api/expense')
+            .then(() => {
+                this.setState({ resetOnSubmit: !false })
+            })
+    }
 
 
-    render(){
+    render() {
         console.log('From render()', this.state)
 
-        const newExpenseList = this.state.expenseList;
 
-        const expenseComponent = newExpenseList.map((expenseList, i) => {
-            return(
-                <div key={i}>
-                    <p>Name of expense: {expenseList.expense}</p>
-                    <p>Cost of expense: ${expenseList.cost}</p>
-                    
-                </div>
-            )
-        })
-        
-        
-        return(
-            <div>
-                {expenseComponent}
-               
+        return (
+            <div className="expenseForm">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th width={300} height={50}>Expense</th>
+                            <th width={300} height={50}>Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.state.expenseList.map((expenseList, i) => (
+                            <tr key={i}>
+                                <td width={300} height={20}>{expenseList.expense}</td>
+                                <td width={300} height={20}>${expenseList.cost}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+
+
+
 
                 <form onSubmit={this.handleSubmit}>
+                    <select
+
+                        name="expense"
+                        value={this.state.expense}
+                        onChange={this.changeHandler}>
+                        <option value="Rent/Mortgage">Rent/Mortgage</option>
+                        <option value="Childcare">Childcare</option>
+                        <option value=""></option>
+
+                    </select>
+                    <br></br>
                     <input
-                    name="expense"
-                    type="text"
-                    placeholder="Name of Expense"
-                    value={this.state.expense}
-                    onChange={this.changeHandler}
+                        name="cost"
+                        type="number"
+                        placeholder="Cost"
+                        value={this.state.cost}
+                        onChange={this.changeHandler}
                     />
                     <br></br>
                     <input
-                    name="cost"
-                    type="number"
-                    placeholder="Cost of Expense"
-                    value={this.state.cost}
-                    onChange={this.changeHandler}
-                    />
-                    <br></br>
-                    <input
-                    type="submit"
-                    value="Submit"
+                        type="submit"
+                        value="Submit"
                     />
                 </form>
-               
+
             </div>
         )
     }

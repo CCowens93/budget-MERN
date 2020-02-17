@@ -2,7 +2,8 @@ const mongoose = require('./connection.js')
 
 const ExpenseSchema = new mongoose.Schema({
     expense: String,
-    cost: Number
+    cost: Number,
+    resetOnSubmit: Boolean
 })
 
 const ExpenseCollection = mongoose.model('Expense', ExpenseSchema)

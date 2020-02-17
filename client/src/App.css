@@ -1,20 +1,34 @@
 .App {
   text-align: center;
-
+  line-height: 10px;
 }
 
-.income{
-  display: flex;
+p{
+  line-height: 10px;
+  margin: 20px;
+}
+
+h1{
+  line-height: 80px;
+}
+
+.incomeForm{
+  display:flex;
   flex-direction: column;
   align-items: flex-start;
-  margin: 20px;
+  margin: 50px;
   
 }
 
-/* .form{
-  display:inline-block;
-  
-} */
+.expenseForm{
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 50px;
+}
+
+
+
 
 
 
