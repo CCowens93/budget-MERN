@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Income from './components/income.js'
 import Expense from './components/expenses.js'
-import Practice from './components/practice.js'
+// import Savings from './components/savings.js'
+
 
 class home extends Component {
 
@@ -29,11 +30,11 @@ class home extends Component {
           
         </Switch>
 
-        <Switch>
+        {/* <Switch>
+          <Route path="/" component={Savings}/>
+        </Switch> */}
 
-          <Route path="/" component={Practice}/>
-
-        </Switch>
+       
       </Router>
       </div>
     </div>
