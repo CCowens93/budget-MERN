@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import axios from 'axios';
 
+
 class expense extends Component {
 
     state = {
@@ -11,8 +12,7 @@ class expense extends Component {
         expenseList: [],
     }
 
-
-    changeHandler = (event) => {
+   changeHandler = (event) => {
         const name = event.target.name;
         const value = event.target.value;
 
@@ -33,26 +33,6 @@ class expense extends Component {
             })
     }
 
-    deleteButton() {
-        axios.delete('/api/expense/:expenseId')
-            .then(() => {
-
-            })
-    }
-
-    oneExpense() {
-        axios.get('/api/expense/:expenseId')
-            .then((res) => {
-                this.setState({ expenseList: res.data })
-            })
-    }
-
-    resetHandler() {
-        axios.get('/api/expense')
-            .then(() => {
-                this.setState({ resetOnSubmit: !false })
-            })
-    }
 
 
     render() {
@@ -60,53 +40,62 @@ class expense extends Component {
 
 
         return (
-            <div className="expenseForm">
+            <div className="wrapper">
 
-                <table>
-                    <thead>
-                        <tr>
-                            <th width={300} height={50}>Expense</th>
-                            <th width={300} height={50}>Cost</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.state.expenseList.map((expenseList, i) => (
-                            <tr key={i}>
-                                <td width={300} height={20}>{expenseList.expense}</td>
-                                <td width={300} height={20}>${expenseList.cost}</td>
+                <div className="expenseTable">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width={300} height={50}>Expense</th>
+                                <th width={300} height={50}>Cost</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {this.state.expenseList.map((expenseList, i) => (
+                                <tr key={i}>
+                                    <td width={300} height={20}>{expenseList.expense}</td>
+                                    <td width={300} height={20}>${expenseList.cost}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
 
+                </div>
 
-
-
-                <form onSubmit={this.handleSubmit}>
-                    <select
-
+                <div className="expenseForm">
+                    <form onSubmit={this.handleSubmit}>
+                        <select
                         name="expense"
-                        value={this.state.expense}
-                        onChange={this.changeHandler}>
-                        <option value="Rent/Mortgage">Rent/Mortgage</option>
-                        <option value="Childcare">Childcare</option>
-                        <option value=""></option>
+                            value={this.state.expense}
+                            onChange={this.changeHandler}>
+                            <option value="" disabled hidden>Expenses</option>
+                            <option value="Rent/Mortgage">Rent/Mortgage</option>
+                            <option value="Childcare">Childcare</option>
+                            <option value="Car Note">Car Note</option>
+                            <option value="Car Insurance">Car Insurance</option>
+                            <option value="Health Insurance">Health Insurance</option>
+                            <option value="Life Insurance">Life Insurance</option>
+                            <option value="Medications">Medications</option>
+                            <option value="Electricity Utility">Electricity Utility</option>
+                            <option value="Gas Utility">Gas Utility</option>
+                            <option value="Phone Bill">Phone Bill</option>
 
-                    </select>
-                    <br></br>
-                    <input
-                        name="cost"
-                        type="number"
-                        placeholder="Cost"
-                        value={this.state.cost}
-                        onChange={this.changeHandler}
-                    />
-                    <br></br>
-                    <input
-                        type="submit"
-                        value="Submit"
-                    />
-                </form>
+                        </select>
+                        <br></br>
+                        <input
+                            name="cost"
+                            type="number"
+                            placeholder="Cost"
+                            value={this.state.cost}
+                            onChange={this.changeHandler}
+                        />
+                        <br></br>
+                        <input
+                            type="submit"
+                            value="Submit"
+                        />
+                    </form>
+                </div>
 
             </div>
         )

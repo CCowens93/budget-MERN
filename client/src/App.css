@@ -12,6 +12,17 @@ h1{
   line-height: 80px;
 }
 
+form{
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-end;
+ 
+}
+
+.routes{
+  display:flex;
+}
+
 .incomeForm{
   display:flex;
   flex-direction: column;
@@ -25,6 +36,19 @@ h1{
   flex-direction: column;
   align-items: flex-start;
   margin: 50px;
+}
+
+.expenseTable{
+  display: flex;
+  align-content: flex-start;
+}
+
+.incomeTable{
+  display:flex;
+}
+
+.wrapper{
+ display:flex;
 }
 
 

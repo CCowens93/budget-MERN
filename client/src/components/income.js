@@ -44,67 +44,65 @@ class income extends Component {
     render() {
         console.log('From render()', this.state)
 
-        
+
         return (
+            <div className="wrapper">
+                <div className="incomeTable">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width={300} height={50}>Source</th>
+                                {/* <th width={300} height={50}>Month</th> */}
+                                <th width={300} height={50}>Income</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            {this.state.incomeList.map((incomeList, i) => (
+                                <tr key={i}>
+                                    <td width={300} height={20}>{incomeList.career}</td>
+                                    {/* <td width={300} height={20}>{incomeList.month}</td> */}
+                                    <td width={300} height={20}>${incomeList.monthlyIncome}</td>
+                                </tr>
+                            )
+
+                            )}
+                        </tbody>
+                    </table>
+                </div>
             <div className="incomeForm">
-
-
-
-            <table>
-                <thead>
-                    <tr>
-                    <th width={300} height={50}>Source</th>
-                    <th width={300} height={50}>Month</th>
-                    <th width={300} height={50}>Income</th>
-                    </tr>
-                    
-                </thead>
-                <tbody>
-                    {this.state.incomeList.map((incomeList, i) => (
-                        <tr key={i}>
-                            <td width={300} height={20}>{incomeList.career}</td>
-                            <td width={300} height={20}>{incomeList.month}</td>
-                            <td width={300} height={20}>${incomeList.monthlyIncome}</td>
-                        </tr>
-                    )
-
-                    )}
-                </tbody>
-            </table>
-
-
                 <form onSubmit={this.handleSubmit}>
                     <input
-                       
+
                         name="career"
                         type="text"
                         placeholder="Source of Income"
                         value={this.state.career}
                         onChange={this.changeHandler}
                     />
-                    <br></br>
+                    {/* <br></br>
 
                     <select
-                       
+
                         name="month"
                         value={this.state.month}
                         onChange={this.changeHandler}>
-               
-                            <option value="January">January</option>
-                            <option value="February">February</option>
-                            <option value="March">March</option>
-                            <option value="April">April</option>
-                            <option value="May">May</option>
-                            <option value="June">June</option>
-                            <option value="July">July</option>
-                            <option value="August">August</option>
-                            <option value="September">September</option>
-                            <option value="October">October</option>
-                            <option value="November">November</option>
-                            <option value="December">December</option>
 
-                 
-                    </select>
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <option value="March">March</option>
+                        <option value="April">April</option>
+                        <option value="May">May</option>
+                        <option value="June">June</option>
+                        <option value="July">July</option>
+                        <option value="August">August</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="December">December</option>
+
+
+                    </select> */}
                     <br></br>
                     <input
                         name="monthlyIncome"
@@ -119,8 +117,9 @@ class income extends Component {
                         value="Submit"
                     />
                 </form>
-
             </div>
+
+        </div>
 
         )
     }

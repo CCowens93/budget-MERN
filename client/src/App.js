@@ -15,6 +15,7 @@ class home extends Component {
   return (
     <div className="App">
       <h1>BUDGET FOR {this.state.name}</h1>
+      <div className="routes">
       <Router>
         <Switch>
           
@@ -34,6 +35,7 @@ class home extends Component {
 
         </Switch>
       </Router>
+      </div>
     </div>
   );
 }
