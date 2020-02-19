@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import TotalMonthlyIncome from './totalIncome.js';
+// import TotalMonthlyIncome from './totalIncome.js';
 
 import axios from 'axios';
 
@@ -11,11 +11,12 @@ class income extends Component {
         career: '',
         month: '',
         monthlyIncome: ''
-    }]
+        }],
+        total: 0
     }
 
 
-   
+
 
     changeHandler = (event) => {
         const name = event.target.name;
@@ -49,48 +50,55 @@ class income extends Component {
                 <td width={300} height={20}>{incomeList.career}</td>
                 {/* <td width={300} height={20}>{incomeList.month}</td> */}
                 <td width={300} height={20}>${incomeList.monthlyIncome}</td>
-              
+
             </tr>
         ))
 
-        const total = (this.state.incomeList[0].monthlyIncome)
 
-        console.log(total)
-     
-        
+
+        const monthlyTotal = this.state.incomeList[0].monthlyIncome
+
+        const total = this.state.total
+
+        const totalIncome = monthlyTotal + total
 
         return (
-            
-            <div className="wrapper">
-                <TotalMonthlyIncome/>
-               
-                <div className="incomeTable">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th width={300} height={50}>Source</th>
-                                {/* <th width={300} height={50}>Month</th> */}
-                                <th width={300} height={50}>Income</th>
-                               
-                            </tr>
-
-                        </thead>
-                        <tbody>
-                          {incomeTable}
-                        </tbody>
-                    </table>
+            <div className="totalWrapper">
+                <div className="total">
+                    <p>Total Income: ${totalIncome}</p>
                 </div>
-            <div className="incomeForm">
-                <form onSubmit={this.handleSubmit}>
-                    <input
+                <div className="wrapper">
 
-                        name="career"
-                        type="text"
-                        placeholder="Source of Income"
-                        value={this.state.career}
-                        onChange={this.changeHandler}
-                    />
-                    {/* <br></br>
+
+
+
+                    <div className="incomeTable">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th width={300} height={50}>Source</th>
+                                    {/* <th width={300} height={50}>Month</th> */}
+                                    <th width={300} height={50}>Income</th>
+
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                {incomeTable}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className="incomeForm">
+                        <form onSubmit={this.handleSubmit}>
+                            <input
+
+                                name="career"
+                                type="text"
+                                placeholder="Source of Income"
+                                value={this.state.career}
+                                onChange={this.changeHandler}
+                            />
+                            {/* <br></br>
 
                     <select
 
@@ -113,23 +121,24 @@ class income extends Component {
 
 
                     </select> */}
-                    <br></br>
-                    <input
-                        name="monthlyIncome"
-                        type="number"
-                        placeholder="Monthly Income"
-                        value={this.state.monthlyIncome}
-                        onChange={this.changeHandler}
-                    />
-                    <br></br>
-                    <input
-                        type="submit"
-                        value="Submit"
-                    />
-                </form>
-            </div>
+                            <br></br>
+                            <input
+                                name="monthlyIncome"
+                                type="number"
+                                placeholder="Monthly Income"
+                                value={this.state.monthlyIncome}
+                                onChange={this.changeHandler}
+                            />
+                            <br></br>
+                            <input
+                                type="submit"
+                                value="Submit"
+                            />
+                        </form>
+                    </div>
 
-        </div>
+                </div>
+            </div>
 
         )
     }

@@ -40,8 +40,8 @@ class savings extends Component{
         return(
             <div className="savings">
                
-            <p>Savings: $0</p>
-            <p>Total Amount: $0</p>
+           
+            {/* <p>Total Expenses: $0</p> */}
                
                
             </div>

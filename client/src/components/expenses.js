@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Savings from './savings.js'
+// import Savings from './savings.js'
 
 import axios from 'axios';
 
@@ -8,10 +8,12 @@ import axios from 'axios';
 class expense extends Component {
 
     state = {
-        expense: '',
-        cost: '',
-        resetOnSubmit: false,
-        expenseList: [],
+        expenseList: [{
+            expense: '',
+            cost: '',
+            resetOnSubmit: false
+        }],
+        total: 0
     }
 
 
@@ -22,7 +24,7 @@ class expense extends Component {
         const newState = { ...this.state }
         newState[name] = value;
         this.setState(newState)
-                      
+
     }
 
     handleSubmit = (event) => {
@@ -33,16 +35,16 @@ class expense extends Component {
     deleteSubmit = (event) => {
         event.preventDefault()
         axios.delete('/api/expense/{this.state.id}')
-        .then(res => console.log(res.data))
+            .then(res => console.log(res.data))
     }
 
     componentDidMount() {
         axios.get('/api/expense')
             .then((res) => {
-                this.setState({ 
+                this.setState({
                     expenseList: res.data,
-                    
-                    
+
+
                 })
             })
     }
@@ -53,79 +55,88 @@ class expense extends Component {
         console.log('From render()', this.state)
 
 
-        const expenseTable =  this.state.expenseList.map((expenseList, i) => (
+        const expenseTable = this.state.expenseList.map((expenseList, i) => (
             <tr key={i}>
                 <td width={300} height={20}>{expenseList.expense} </td>
                 <td width={300} height={20}>${expenseList.cost}</td>
-                
+
             </tr>
         ))
 
-            
+
+        const monthlyTotal = this.state.expenseList[0].cost
+
+        const total = this.state.total
+
+        const totalCosts = monthlyTotal + total
+
+
 
         return (
             <div className="savingsWrapper">
-            <Savings/>
-            <div className="wrapper">
-            
+                <div className="savings">
+                    <p>Total Expenses: ${totalCosts}</p>
+                </div>
+                <div className="wrapper">
 
 
-                <div className="expenseTable">
-                
-                    <table>
-                        <thead>
-                            <tr>
-                                <th width={300} height={50}>Expense</th>
-                                <th width={300} height={50}>Cost</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                           {expenseTable}
-                        </tbody>
-                    </table>
+
+                    <div className="expenseTable">
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th width={300} height={50}>Expense</th>
+                                    <th width={300} height={50}>Cost</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {expenseTable}
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    <div className="expenseForm">
+                        <form onSubmit={this.handleSubmit}>
+                            <select
+                                name="expense"
+                                value={this.state.expense}
+                                onChange={this.changeHandler}>
+                                <option value="" disabled hidden>Expenses</option>
+                                <option value="Rent/Mortgage">Rent/Mortgage</option>
+                                <option value="Childcare">Childcare</option>
+                                <option value="Car Note">Car Note</option>
+                                <option value="Car Insurance">Car Insurance</option>
+                                <option value="Health Insurance">Health Insurance</option>
+                                <option value="Life Insurance">Life Insurance</option>
+                                <option value="Medications">Medications</option>
+                                <option value="Electricity Utility">Electricity Utility</option>
+                                <option value="Gas Utility">Gas Utility</option>
+                                <option value="Phone Bill">Phone Bill</option>
+
+                            </select>
+                            <br></br>
+                            <input
+                                name="cost"
+                                type="number"
+                                placeholder="Cost"
+                                value={this.state.cost}
+                                onChange={this.changeHandler}
+                            />
+                            <br></br>
+                            <input
+                                type="submit"
+                                value="Submit"
+                                onChange={this.toggleShow}
+                            />
+
+                        </form>
+
+                    </div>
+
 
                 </div>
-
-                <div className="expenseForm">
-                    <form onSubmit={this.handleSubmit}>
-                        <select
-                        name="expense"
-                            value={this.state.expense}
-                            onChange={this.changeHandler}>
-                            <option value="" disabled hidden>Expenses</option>
-                            <option value="Rent/Mortgage">Rent/Mortgage</option>
-                            <option value="Childcare">Childcare</option>
-                            <option value="Car Note">Car Note</option>
-                            <option value="Car Insurance">Car Insurance</option>
-                            <option value="Health Insurance">Health Insurance</option>
-                            <option value="Life Insurance">Life Insurance</option>
-                            <option value="Medications">Medications</option>
-                            <option value="Electricity Utility">Electricity Utility</option>
-                            <option value="Gas Utility">Gas Utility</option>
-                            <option value="Phone Bill">Phone Bill</option>
-
-                        </select>
-                        <br></br>
-                        <input
-                            name="cost"
-                            type="number"
-                            placeholder="Cost"
-                            value={this.state.cost}
-                            onChange={this.changeHandler}
-                        />
-                        <br></br>
-                        <input
-                            type="submit"
-                            value="Submit"
-                            onChange={this.toggleShow}
-                        />
-                        
-                    </form>
-                    
-                </div>
-                
-
-            </div>
             </div>
         )
     }

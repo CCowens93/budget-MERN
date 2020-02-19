@@ -2,6 +2,7 @@ const mongoose = require('./connection.js')
 
 const IncomeSchema = new mongoose.Schema({
     career: String,
+    total: Number,
     month: String,
     monthlyIncome: Number,
 })

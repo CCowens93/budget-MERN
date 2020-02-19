@@ -75,7 +75,7 @@ td{
   padding: 10px 10px;
 }
 
-.totalMonthlyIncome{
+.total{
   display:flex;
   justify-content: flex-start;
   border: solid;
@@ -84,10 +84,18 @@ td{
   padding: 10px 10px;
 }
 
+.totalWrapper{
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  
+}
+
 .savingsWrapper{
   display:flex;
   flex-direction: column;
   justify-content: flex-start;
+  
   
 }
 
