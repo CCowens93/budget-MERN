@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Savings from './savings.js'
+
 import axios from 'axios';
 
 
@@ -12,13 +14,15 @@ class expense extends Component {
         expenseList: [],
     }
 
-   changeHandler = (event) => {
+
+    changeHandler = (event) => {
         const name = event.target.name;
         const value = event.target.value;
 
         const newState = { ...this.state }
         newState[name] = value;
         this.setState(newState)
+                      
     }
 
     handleSubmit = (event) => {
@@ -26,10 +30,20 @@ class expense extends Component {
         axios.post('/api/expense', this.state)
     }
 
+    deleteSubmit = (event) => {
+        event.preventDefault()
+        axios.delete('/api/expense/{this.state.id}')
+        .then(res => console.log(res.data))
+    }
+
     componentDidMount() {
         axios.get('/api/expense')
             .then((res) => {
-                this.setState({ expenseList: res.data })
+                this.setState({ 
+                    expenseList: res.data,
+                    
+                    
+                })
             })
     }
 
@@ -39,10 +53,25 @@ class expense extends Component {
         console.log('From render()', this.state)
 
 
+        const expenseTable =  this.state.expenseList.map((expenseList, i) => (
+            <tr key={i}>
+                <td width={300} height={20}>{expenseList.expense} </td>
+                <td width={300} height={20}>${expenseList.cost}</td>
+                
+            </tr>
+        ))
+
+            
+
         return (
+            <div className="savingsWrapper">
+            <Savings/>
             <div className="wrapper">
+            
+
 
                 <div className="expenseTable">
+                
                     <table>
                         <thead>
                             <tr>
@@ -51,12 +80,7 @@ class expense extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.expenseList.map((expenseList, i) => (
-                                <tr key={i}>
-                                    <td width={300} height={20}>{expenseList.expense}</td>
-                                    <td width={300} height={20}>${expenseList.cost}</td>
-                                </tr>
-                            ))}
+                           {expenseTable}
                         </tbody>
                     </table>
 
@@ -93,10 +117,15 @@ class expense extends Component {
                         <input
                             type="submit"
                             value="Submit"
+                            onChange={this.toggleShow}
                         />
+                        
                     </form>
+                    
                 </div>
+                
 
+            </div>
             </div>
         )
     }

@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 
+import TotalMonthlyIncome from './totalIncome.js';
+
 import axios from 'axios';
 
 class income extends Component {
 
     state = {
+        incomeList: [{
         career: '',
         month: '',
-        monthlyIncome: '',
-        incomeList: []
+        monthlyIncome: ''
+    }]
     }
 
 
-
-
+   
 
     changeHandler = (event) => {
         const name = event.target.name;
@@ -37,16 +39,31 @@ class income extends Component {
     }
 
 
-    monthList = <select>
-
-    </select>
 
     render() {
         console.log('From render()', this.state)
 
 
+        const incomeTable = this.state.incomeList.map((incomeList, i) => (
+            <tr key={i}>
+                <td width={300} height={20}>{incomeList.career}</td>
+                {/* <td width={300} height={20}>{incomeList.month}</td> */}
+                <td width={300} height={20}>${incomeList.monthlyIncome}</td>
+              
+            </tr>
+        ))
+
+        const total = (this.state.incomeList[0].monthlyIncome)
+
+        console.log(total)
+     
+        
+
         return (
+            
             <div className="wrapper">
+                <TotalMonthlyIncome/>
+               
                 <div className="incomeTable">
                     <table>
                         <thead>
@@ -54,19 +71,12 @@ class income extends Component {
                                 <th width={300} height={50}>Source</th>
                                 {/* <th width={300} height={50}>Month</th> */}
                                 <th width={300} height={50}>Income</th>
+                               
                             </tr>
 
                         </thead>
                         <tbody>
-                            {this.state.incomeList.map((incomeList, i) => (
-                                <tr key={i}>
-                                    <td width={300} height={20}>{incomeList.career}</td>
-                                    {/* <td width={300} height={20}>{incomeList.month}</td> */}
-                                    <td width={300} height={20}>${incomeList.monthlyIncome}</td>
-                                </tr>
-                            )
-
-                            )}
+                          {incomeTable}
                         </tbody>
                     </table>
                 </div>

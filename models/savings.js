@@ -1,37 +1,37 @@
-// const mongoose = require('./connections.js')
+const mongoose = require('./connection.js')
 
-// const SavingsSchema = new mongoose.Schema({
-//     savings: Number
-// })
+const SavingsSchema = new mongoose.Schema({
+    savings: Number
+})
 
-// const SavingsCollection = mongoose.model('Savings', SavingsSchema)
+const SavingsCollection = mongoose.model('Savings', SavingsSchema)
 
 
-// //getAll
+//getAll
 
-// const getAllSavings = () => {
-//     return SavingsCollection.find()
-// }
+const getAllSavings = () => {
+    return SavingsCollection.find()
+}
 
-// //getOne
+//getOne
 
-// const getOneSavings = (savingsId) => {
-//     return SavingsCollection.findById(savingsId)
-// }
+const getOneSavings = (savingsId) => {
+    return SavingsCollection.findById(savingsId)
+}
 
-// //create
+//create
 
-// const createSavings = (newSavings) => {
-//     return SavingsCollection.create(newSavings)
-// }
+const createSavings = (newSavings) => {
+    return SavingsCollection.create(newSavings)
+}
 
-// const deleteSavings = (savingsId) => {
-//     return SavingsCollection.delete(savingsId)
-// }
+const deleteSavings = (savingsId) => {
+    return SavingsCollection.delete(savingsId)
+}
 
-// module.exports = {
-//     getAllSavings, 
-//     getOneSavings,
-//     createSavings,
-//     deleteSavings
-// }
+module.exports = {
+    getAllSavings, 
+    getOneSavings,
+    createSavings,
+    deleteSavings
+}
