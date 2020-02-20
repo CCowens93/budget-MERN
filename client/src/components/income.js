@@ -11,8 +11,7 @@ class income extends Component {
         career: '',
         month: '',
         monthlyIncome: ''
-        }],
-        total: 0
+        }]
     }
 
 
@@ -45,8 +44,9 @@ class income extends Component {
         console.log('From render()', this.state)
 
 
-        const incomeTable = this.state.incomeList.map((incomeList, i) => (
-            <tr key={i}>
+        const incomeTable = this.state.incomeList.map((incomeList, i, v) => (
+            <tr key={i} value={v}>
+                
                 <td width={300} height={20}>{incomeList.career}</td>
                 {/* <td width={300} height={20}>{incomeList.month}</td> */}
                 <td width={300} height={20}>${incomeList.monthlyIncome}</td>
@@ -54,18 +54,24 @@ class income extends Component {
             </tr>
         ))
 
+       
+        let total = 0
 
+        const x = this.state.incomeList
 
-        const monthlyTotal = this.state.incomeList[0].monthlyIncome
+        for(let i = 0; i < x.length; i ++){
+            total = total + x[i].monthlyIncome
+        }
 
-        const total = this.state.total
+        
 
-        const totalIncome = monthlyTotal + total
+        
+
 
         return (
             <div className="totalWrapper">
                 <div className="total">
-                    <p>Total Income: ${totalIncome}</p>
+                    <p>Total Income: ${total}</p>
                 </div>
                 <div className="wrapper">
 

@@ -64,18 +64,20 @@ class expense extends Component {
         ))
 
 
-        const monthlyTotal = this.state.expenseList[0].cost
+        let total = 0
 
-        const total = this.state.total
+        const x = this.state.expenseList
 
-        const totalCosts = monthlyTotal + total
+        for(let i = 0; i < x.length; i ++){
+            total = total + x[i].cost
+        }
 
 
 
         return (
             <div className="savingsWrapper">
                 <div className="savings">
-                    <p>Total Expenses: ${totalCosts}</p>
+                    <p>Total Expenses: ${total}</p>
                 </div>
                 <div className="wrapper">
 
