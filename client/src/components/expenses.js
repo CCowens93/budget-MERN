@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-// import Savings from './savings.js'
+import Savings from './savings.js'
 
 import axios from 'axios';
 
@@ -55,14 +55,22 @@ class expense extends Component {
         console.log('From render()', this.state)
 
 
-        const expenseTable = this.state.expenseList.map((expenseList, i) => (
-            <tr key={i}>
-                <td width={300} height={20}>{expenseList.expense} </td>
-                <td width={300} height={20}>${expenseList.cost}</td>
+        // const expenseTable = this.state.expenseList.map((expenseList, i) => (
+        //         <tr key={i}>
+        //         <td width={300} height={20}>{expenseList.expense} </td>
+        //         <td width={300} height={20}>${expenseList.cost}</td>
 
-            </tr>
-        ))
+        //     </tr>
+        // ))
 
+        const expenseTable = this.state.expenseList.map((expenseList, i) => {
+            return <Savings
+                key={i}
+                expense={expenseList.expense}
+                cost={expenseList.cost}
+            
+            />
+        })
 
         let total = 0
 
@@ -75,9 +83,11 @@ class expense extends Component {
 
 
         return (
+            <div className="chartWrapper">
             <div className="savingsWrapper">
                 <div className="savings">
                     <p>Total Expenses: ${total}</p>
+                </div>
                 </div>
                 <div className="wrapper">
 

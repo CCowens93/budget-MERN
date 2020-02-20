@@ -39,9 +39,11 @@ class savings extends Component{
 
         return(
             <div className="savings">
-               
-           
-            {/* <p>Total Expenses: $0</p> */}
+               <tr>
+            <td>{this.props.expense}</td>
+            <td>{this.props.cost}</td>
+            </tr>
+            
                
                
             </div>

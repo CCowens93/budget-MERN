@@ -103,6 +103,11 @@ td{
  display:flex;
 }
 
+.chartWrapper{
+  display: flex;
+  flex-direction: column;
+}
+
 
 
 
