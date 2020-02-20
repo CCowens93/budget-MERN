@@ -12,8 +12,8 @@ class expense extends Component {
             expense: '',
             cost: '',
             resetOnSubmit: false
-        }],
-        total: 0
+        }]
+       
     }
 
 
@@ -55,22 +55,22 @@ class expense extends Component {
         console.log('From render()', this.state)
 
 
-        // const expenseTable = this.state.expenseList.map((expenseList, i) => (
-        //         <tr key={i}>
-        //         <td width={300} height={20}>{expenseList.expense} </td>
-        //         <td width={300} height={20}>${expenseList.cost}</td>
+        const expenseTable = this.state.expenseList.map((expenseList, i) => (
+                <tr key={i}>
+                <td width={300} height={20}>{expenseList.expense} </td>
+                <td width={300} height={20}>${expenseList.cost}</td>
 
-        //     </tr>
-        // ))
+            </tr>
+        ))
 
-        const expenseTable = this.state.expenseList.map((expenseList, i) => {
-            return <Savings
-                key={i}
-                expense={expenseList.expense}
-                cost={expenseList.cost}
+        // const expenseTable = this.state.expenseList.map((expenseList, i) => {
+        //     return <Savings
+        //         key={i}
+        //         expense={expenseList.expense}
+        //         cost={expenseList.cost}
             
-            />
-        })
+        //     />
+        // })
 
         let total = 0
 
@@ -84,6 +84,7 @@ class expense extends Component {
 
         return (
             <div className="chartWrapper">
+                <h2>List your monthly expenses and the amount they cost below </h2>
             <div className="savingsWrapper">
                 <div className="savings">
                     <p>Total Expenses: ${total}</p>

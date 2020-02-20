@@ -70,6 +70,7 @@ class income extends Component {
 
         return (
             <div className="totalWrapper">
+                <h2>Enter your sources of income and the amount your earn per month below</h2>
                 <div className="total">
                     <p>Total Income: ${total}</p>
                 </div>
